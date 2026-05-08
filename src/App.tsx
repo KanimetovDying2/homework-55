@@ -45,6 +45,17 @@ const App = () => {
     );
   };
 
+  const resetIngredients = () => {
+    setIngredients(
+      ingredients.map((ing) => {
+        return {
+          ...ing,
+          count: 0,
+        };
+      }),
+    );
+  };
+
   const totalPrice = ingredients.reduce((acc, item) => {
     const currentIngredient = INGREDIENTS.find((ing) => ing.name === item.name);
     if (!currentIngredient) return acc;
@@ -66,9 +77,18 @@ const App = () => {
               count={currentCount}
               onAdd={() => addIngredient(ing.name)}
               onRemove={() => removeIngredient(ing.name)}
+              disabledRemove={currentCount === 0}
             />
           );
         })}
+      </div>
+      <div className="order-info">
+        <p>
+          Итоговая стоимость: <strong>{totalPrice}</strong> сом
+        </p>
+        <button className="reset-btn" onClick={resetIngredients}>
+          Очистить всё
+        </button>
       </div>
     </div>
   );

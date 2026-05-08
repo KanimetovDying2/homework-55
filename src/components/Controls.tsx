@@ -5,9 +5,10 @@ interface Props {
   image: string;
   onAdd: () => void;
   onRemove: () => void;
+  disabledRemove: boolean;
 }
 
-const Controls = ({ name, price, count, image, onAdd, onRemove }: Props) => {
+const Controls = ({ name, price, count, image, onAdd, onRemove, disabledRemove }: Props) => {
   return (
     <div className="control-item">
       <img src={image} alt={name} className="ingredient-img" />
@@ -18,7 +19,7 @@ const Controls = ({ name, price, count, image, onAdd, onRemove }: Props) => {
         <button className="control-btn add-btn" onClick={onAdd}>
           Add
         </button>
-        <button className="control-btn remove-btn" onClick={onRemove}>
+        <button className="control-btn remove-btn" onClick={onRemove} disabled={disabledRemove}>
           Remove
         </button>
       </div>
