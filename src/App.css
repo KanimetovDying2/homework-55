@@ -47,12 +47,17 @@
 }
 
 .control-item img {
+  cursor: pointer;
   width: 120px;
   height: 120px;
   object-fit: cover;
   border-radius: 50%;
   margin-bottom: 10px;
-  border: 3px solid #f08e4a;
+  border: 3px solid #fc7c20;
+}
+
+.control-item img:hover {
+  border: 3px solid #34ff07;
 }
 
 .control-item h3 {
@@ -80,6 +85,7 @@
 .add-btn {
   background-color: #4caf50;
   color: white;
+  text-transform: capitalize;
 }
 .add-btn:hover {
   background-color: #45a049;
