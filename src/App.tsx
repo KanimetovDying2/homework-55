@@ -1,11 +1,12 @@
 import "./App.css";
 import type { Ingredient, IngredientCount } from "./type";
+import Controls from "./components/Controls";
+import { useState } from "react";
 
 import BaconImg from "./assets/bacon.jpg";
 import CheeseImg from "./assets/cheese.jpg";
 import MeatImg from "./assets/meat.jpg";
 import SaladImg from "./assets/salad.jpg";
-import { useState } from "react";
 
 const INGREDIENTS: Ingredient[] = [
   { name: "bacon", price: 60, image: BaconImg },
@@ -50,7 +51,27 @@ const App = () => {
     return acc + currentIngredient.price * item.count;
   }, 30);
 
-  return <></>;
+  return (
+    <div className="App">
+      <div className="container">
+        {INGREDIENTS.map((ing) => {
+          const currentCount =
+            ingredients.find((i) => i.name === ing.name)?.count ?? 0;
+          return (
+            <Controls
+              key={ing.name}
+              name={ing.name}
+              price={ing.price}
+              image={ing.image}
+              count={currentCount}
+              onAdd={() => addIngredient(ing.name)}
+              onRemove={() => removeIngredient(ing.name)}
+            />
+          );
+        })}
+      </div>
+    </div>
+  );
 };
 
 export default App;
