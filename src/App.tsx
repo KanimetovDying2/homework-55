@@ -2,6 +2,7 @@ import "./App.css";
 import type { IngredientCount } from "./type";
 import { INGREDIENTS } from "./ingredients";
 import Controls from "./components/Controls";
+import Burger from "./components/Burger";
 import { useState } from "react";
 
 const App = () => {
@@ -50,23 +51,26 @@ const App = () => {
 
   return (
     <div className="App">
-      <div className="container">
-        {INGREDIENTS.map((ing) => {
-          const currentCount =
-            ingredients.find((i) => i.name === ing.name)?.count ?? 0;
-          return (
-            <Controls
-              key={ing.name}
-              name={ing.name}
-              price={ing.price}
-              image={ing.image}
-              count={currentCount}
-              onAdd={() => addIngredient(ing.name)}
-              onRemove={() => removeIngredient(ing.name)}
-              disabledRemove={currentCount === 0}
-            />
-          );
-        })}
+      <div className="main-content">
+        <div className="container">
+          {INGREDIENTS.map((ing) => {
+            const currentCount =
+              ingredients.find((i) => i.name === ing.name)?.count ?? 0;
+            return (
+              <Controls
+                key={ing.name}
+                name={ing.name}
+                price={ing.price}
+                image={ing.image}
+                count={currentCount}
+                onAdd={() => addIngredient(ing.name)}
+                onRemove={() => removeIngredient(ing.name)}
+                disabledRemove={currentCount === 0}
+              />
+            );
+          })}
+        </div>
+        <Burger ingredients={ingredients} />
       </div>
       <div className="order-info">
         <p>
