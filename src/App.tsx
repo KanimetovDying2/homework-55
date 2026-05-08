@@ -1,27 +1,13 @@
 import "./App.css";
-import type { Ingredient, IngredientCount } from "./type";
+import type { IngredientCount } from "./type";
+import { INGREDIENTS } from "./ingredients";
 import Controls from "./components/Controls";
 import { useState } from "react";
 
-import BaconImg from "./assets/bacon.jpg";
-import CheeseImg from "./assets/cheese.jpg";
-import MeatImg from "./assets/meat.jpg";
-import SaladImg from "./assets/salad.jpg";
-
-const INGREDIENTS: Ingredient[] = [
-  { name: "bacon", price: 60, image: BaconImg },
-  { name: "cheese", price: 50, image: CheeseImg },
-  { name: "meat", price: 80, image: MeatImg },
-  { name: "salad", price: 10, image: SaladImg },
-];
-
 const App = () => {
-  const [ingredients, setIngredients] = useState<IngredientCount[]>([
-    { name: "bacon", count: 0 },
-    { name: "cheese", count: 0 },
-    { name: "meat", count: 0 },
-    { name: "salad", count: 0 },
-  ]);
+  const [ingredients, setIngredients] = useState<IngredientCount[]>(
+    INGREDIENTS.map((ing) => ({ name: ing.name, count: 0 })),
+  );
 
   const addIngredient = (userIngredient: string) => {
     setIngredients(
